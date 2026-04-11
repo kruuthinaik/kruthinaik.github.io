@@ -5,128 +5,113 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', Arial, sans-serif;
             text-align: center;
-            padding: 20px;
-            background: linear-gradient(135deg, #2c003e 0%, #4a004d 100%);
-            margin: 0;
             min-height: 100vh;
+            background-image: url('IMG_8998.WEBP');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
         }
-        .container {
-            max-width: 1000px;
-            margin: auto;
-        }
-        h1 {
-            color: #ff69b4;
-        }
-        .back-btn {
-            background-color: #ff69b4;
-            color: white;
-            border: none;
-            padding: 10px 25px;
-            border-radius: 30px;
-            font-size: 16px;
-            cursor: pointer;
-            margin: 20px 0;
-            display: inline-block;
-            text-decoration: none;
-        }
-        .number-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
-        }
-        .num-btn {
-            background-color: #ff69b4;
-            color: white;
-            border: none;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            font-size: 24px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .num-btn:hover {
-            background-color: #ff1493;
-            transform: scale(1.1);
-        }
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        .gallery-item {
-            background-color: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            transition: 0.3s;
-            cursor: pointer;
-        }
-        .gallery-item:hover {
-            transform: translateY(-5px);
-        }
-        .gallery-item img, .gallery-item video {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-        }
-        .gallery-item p {
-            padding: 10px;
-            margin: 0;
-            color: #333;
-        }
-        .section-title {
-            color: #ff69b4;
-            font-size: 1.5em;
-            margin: 20px 0;
-        }
-        .hidden {
-            display: none;
-        }
-        .private-badge {
-            background-color: #ff1493;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
-        footer {
-            margin-top: 40px;
-            color: #ccc;
-        }
-        .lightbox {
-            display: none;
-            position: fixed;
+
+        body::before {
+            content: '';
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.9);
-            z-index: 1000;
-            cursor: pointer;
-            justify-content: center;
-            align-items: center;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 0;
         }
-        .lightbox img, .lightbox video {
-            max-width: 90%;
-            max-height: 90%;
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: auto;
+            padding: 40px 20px;
         }
-        .close-lightbox {
-            position: absolute;
-            top: 20px;
-            right: 30px;
+
+        h1 {
+            color: #ff69b4;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
             color: white;
-            font-size: 40px;
-            font-weight: bold;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 600;
             cursor: pointer;
+            margin: 20px 0;
+            display: inline-block;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.4);
+        }
+
+        .private-badge {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 25px;
+            margin: 30px 0;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .private-badge h2 {
+            color: #ff1493;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .private-badge p {
+            color: #555;
+            font-size: 1.1em;
+        }
+
+        .coming-soon {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 25px;
+            color: white;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .coming-soon h3 {
+            color: #ff69b4;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        footer {
+            margin-top: 50px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 12px;
         }
     </style>
 </head>
@@ -135,92 +120,21 @@
         <a href="index.html" class="back-btn">⬅ Back to Home</a>
         
         <h1>🔒 PRIVATE GALLERY</h1>
-        <div class="private-badge">🔞 Exclusive Content 🔞</div>
 
-        <div class="number-buttons">
-            <button class="num-btn" onclick="showNumber(1)">1</button>
-            <button class="num-btn" onclick="showNumber(2)">2</button>
-            <button class="num-btn" onclick="showNumber(3)">3</button>
-            <button class="num-btn" onclick="showNumber(4)">4</button>
-            <button class="num-btn" onclick="showNumber(5)">5</button>
+        <div class="private-badge">
+            <h2>🔞 Exclusive Content 🔞</h2>
+            <p>Only for special eyes 👀</p>
         </div>
 
-        <div id="num1" class="category-section">
-            <h2 class="section-title">🔞 Private Set 1</h2>
-            <div class="gallery">
-                <div class="gallery-item" onclick="openLightbox('https://via.placeholder.com/300x250/dda0dd/white?text=Private+1')">
-                    <img src="https://via.placeholder.com/300x250/dda0dd/white?text=Private+1" alt="Private">
-                    <p>Exclusive content 🔞</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="num2" class="category-section hidden">
-            <h2 class="section-title">🔞 Private Set 2</h2>
-            <div class="gallery">
-                <div class="gallery-item">
-                    <img src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" alt="Coming Soon">
-                    <p>Coming soon 💋</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="num3" class="category-section hidden">
-            <h2 class="section-title">🔞 Private Set 3</h2>
-            <div class="gallery">
-                <div class="gallery-item">
-                    <img src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" alt="Coming Soon">
-                    <p>Coming soon 💕</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="num4" class="category-section hidden">
-            <h2 class="section-title">🔞 Private Set 4</h2>
-            <div class="gallery">
-                <div class="gallery-item">
-                    <img src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" alt="Coming Soon">
-                    <p>Coming soon 🔥</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="num5" class="category-section hidden">
-            <h2 class="section-title">🔞 Private Set 5</h2>
-            <div class="gallery">
-                <div class="gallery-item">
-                    <img src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" alt="Coming Soon">
-                    <p>Coming soon 😈</p>
-                </div>
-            </div>
+        <div class="coming-soon">
+            <h3>✨ Coming Soon ✨</h3>
+            <p>Private photos and videos will appear here</p>
+            <p style="margin-top: 15px; font-size: 12px;">🔒 Password protected area</p>
         </div>
 
         <footer>
             <p>🔒 Private & Exclusive 🔒</p>
         </footer>
     </div>
-
-    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-        <span class="close-lightbox">&times;</span>
-        <img id="lightbox-img" src="">
-    </div>
-
-    <script>
-        function showNumber(num) {
-            for (var i = 1; i <= 5; i++) {
-                document.getElementById('num' + i).classList.add('hidden');
-            }
-            document.getElementById('num' + num).classList.remove('hidden');
-        }
-
-        function openLightbox(src) {
-            document.getElementById('lightbox-img').src = src;
-            document.getElementById('lightbox').style.display = 'flex';
-        }
-
-        function closeLightbox() {
-            document.getElementById('lightbox').style.display = 'none';
-        }
-    </script>
 </body>
 </html>
