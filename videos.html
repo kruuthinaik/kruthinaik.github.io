@@ -13,7 +13,7 @@
             margin: 0;
         }
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: auto;
         }
         h1 {
@@ -88,9 +88,40 @@
         .hidden {
             display: none;
         }
+        .loading {
+            color: #ff69b4;
+            font-size: 18px;
+            padding: 40px;
+        }
         footer {
             margin-top: 40px;
             color: #666;
+        }
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            z-index: 1000;
+            cursor: pointer;
+            justify-content: center;
+            align-items: center;
+        }
+        .lightbox video {
+            max-width: 90%;
+            max-height: 90%;
+        }
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -101,152 +132,109 @@
         <h1>🎥 My Videos</h1>
 
         <div class="number-buttons">
-            <button class="num-btn" onclick="showNumber(1)">1</button>
-            <button class="num-btn" onclick="showNumber(2)">2</button>
-            <button class="num-btn" onclick="showNumber(3)">3</button>
-            <button class="num-btn" onclick="showNumber(4)">4</button>
-            <button class="num-btn" onclick="showNumber(5)">5</button>
-            <button class="num-btn" onclick="showNumber(6)">6</button>
-            <button class="num-btn" onclick="showNumber(7)">7</button>
-            <button class="num-btn" onclick="showNumber(8)">8</button>
-            <button class="num-btn" onclick="showNumber(9)">9</button>
-            <button class="num-btn" onclick="showNumber(10)">10</button>
+            <button class="num-btn" onclick="showCategory(1)">1</button>
+            <button class="num-btn" onclick="showCategory(2)">2</button>
+            <button class="num-btn" onclick="showCategory(3)">3</button>
+            <button class="num-btn" onclick="showCategory(4)">4</button>
+            <button class="num-btn" onclick="showCategory(5)">5</button>
+            <button class="num-btn" onclick="showCategory(6)">6</button>
+            <button class="num-btn" onclick="showCategory(7)">7</button>
+            <button class="num-btn" onclick="showCategory(8)">8</button>
+            <button class="num-btn" onclick="showCategory(9)">9</button>
+            <button class="num-btn" onclick="showCategory(10)">10</button>
         </div>
 
-        <!-- Number 1 -->
-        <div id="num1" class="category-section">
-            <h2 class="section-title">🎥 Category 1</h2>
-            <div class="gallery">
-                <div class="gallery-item">
-                    <video controls>
-                        <source src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" type="video/mp4">
-                    </video>
-                    <p>Coming soon 🎬</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Numbers 2-10 -->
-        <div id="num2" class="category-section hidden">
-            <h2 class="section-title">🎥 Category 2</h2>
-            <div class="gallery">
-                <div class="gallery-item">
-                    <video controls>
-                        <source src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" type="video/mp4">
-                    </video>
-                    <p>Coming soon 💕</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="num3" class="category-section hidden">
-            <h2 class="section-title">🎥 Category 3</h2>
-            <div class="gallery">
-                <div class="gallery-item">
-                    <video controls>
-                        <source src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" type="video/mp4">
-                    </video>
-                    <p>Coming soon 💕</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="num4" class="category-section hidden">
-            <h2 class="section-title">🎥 Category 4</h2>
-            <div class="gallery">
-                <div class="gallery-item">
-                    <video controls>
-                        <source src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" type="video/mp4">
-                    </video>
-                    <p>Coming soon 💕</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="num5" class="category-section hidden">
-            <h2 class="section-title">🎥 Category 5</h2>
-            <div class="gallery">
-                <div class="gallery-item">
-                    <video controls>
-                        <source src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" type="video/mp4">
-                    </video>
-                    <p>Coming soon 💕</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="num6" class="category-section hidden">
-            <h2 class="section-title">🎥 Category 6</h2>
-            <div class="gallery">
-                <div class="gallery-item">
-                    <video controls>
-                        <source src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" type="video/mp4">
-                    </video>
-                    <p>Coming soon 💕</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="num7" class="category-section hidden">
-            <h2 class="section-title">🎥 Category 7</h2>
-            <div class="gallery">
-                <div class="gallery-item">
-                    <video controls>
-                        <source src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" type="video/mp4">
-                    </video>
-                    <p>Coming soon 💕</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="num8" class="category-section hidden">
-            <h2 class="section-title">🎥 Category 8</h2>
-            <div class="gallery">
-                <div class="gallery-item">
-                    <video controls>
-                        <source src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" type="video/mp4">
-                    </video>
-                    <p>Coming soon 💕</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="num9" class="category-section hidden">
-            <h2 class="section-title">🎥 Category 9</h2>
-            <div class="gallery">
-                <div class="gallery-item">
-                    <video controls>
-                        <source src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" type="video/mp4">
-                    </video>
-                    <p>Coming soon 💕</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="num10" class="category-section hidden">
-            <h2 class="section-title">🎥 Category 10</h2>
-            <div class="gallery">
-                <div class="gallery-item">
-                    <video controls>
-                        <source src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" type="video/mp4">
-                    </video>
-                    <p>Coming soon 💕</p>
-                </div>
-            </div>
-        </div>
+        <div id="gallery-container"></div>
 
         <footer>
             <p>💕 Always available for you 💕</p>
         </footer>
     </div>
 
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="close-lightbox">&times;</span>
+        <video id="lightbox-video" controls></video>
+    </div>
+
     <script>
-        function showNumber(num) {
-            for (var i = 1; i <= 10; i++) {
-                document.getElementById('num' + i).classList.add('hidden');
+        const videoFolders = [
+            'video1', 'video2', 'video3', 'video4', 'video5',
+            'video6', 'video7', 'video8', 'video9', 'video10'
+        ];
+
+        async function showCategory(categoryNum) {
+            const container = document.getElementById('gallery-container');
+            container.innerHTML = '<div class="loading">🎥 Loading videos...</div>';
+            
+            const folderName = videoFolders[categoryNum - 1];
+            
+            try {
+                const response = await fetch(`${folderName}/`);
+                const text = await response.text();
+                
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(text, 'text/html');
+                const links = doc.querySelectorAll('a');
+                
+                const videoFiles = [];
+                for (let link of links) {
+                    const href = link.getAttribute('href');
+                    if (href && (href.match(/\.(mp4|webm|mov|avi)$/i))) {
+                        videoFiles.push(href);
+                    }
+                }
+                
+                if (videoFiles.length === 0) {
+                    container.innerHTML = `
+                        <div class="section-title">🎥 Category ${categoryNum}</div>
+                        <div class="gallery">
+                            <div class="gallery-item">
+                                <video controls>
+                                    <source src="https://via.placeholder.com/300x250/dda0dd/white?text=No+Videos+Yet" type="video/mp4">
+                                </video>
+                                <p>Coming soon 💕</p>
+                            </div>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                let galleryHTML = `<h2 class="section-title">🎥 Category ${categoryNum}</h2>`;
+                galleryHTML += '<div class="gallery">';
+                
+                for (let video of videoFiles) {
+                    const videoPath = `${folderName}/${video}`;
+                    galleryHTML += `
+                        <div class="gallery-item">
+                            <video controls preload="metadata">
+                                <source src="${videoPath}" type="video/mp4">
+                                Your browser doesn't support video.
+                            </video>
+                            <p>🎬 Video</p>
+                        </div>
+                    `;
+                }
+                
+                galleryHTML += '</div>';
+                container.innerHTML = galleryHTML;
+                
+            } catch (error) {
+                container.innerHTML = `
+                    <div class="section-title">🎥 Category ${categoryNum}</div>
+                    <div class="gallery">
+                        <div class="gallery-item">
+                            <video controls>
+                                <source src="https://via.placeholder.com/300x250/dda0dd/white?text=Create+Folder" type="video/mp4">
+                            </video>
+                            <p>Create folder: ${folderName}/</p>
+                        </div>
+                    </div>
+                `;
             }
-            document.getElementById('num' + num).classList.remove('hidden');
         }
+
+        // Load category 1 by default
+        showCategory(1);
     </script>
 </body>
 </html>
