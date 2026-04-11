@@ -5,73 +5,142 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
-            background: linear-gradient(135deg, #ffe4e1 0%, #ffccd5 100%);
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            text-align: center;
             min-height: 100vh;
+            background-image: url('IMG_8998.WEBP');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
         }
+
+        /* Dark overlay for better text readability */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 0;
+        }
+
         .container {
+            position: relative;
+            z-index: 1;
             max-width: 500px;
-            margin: auto;
+            margin: 20px;
+            animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
+
+        /* Pop animation */
+        @keyframes popIn {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Fade in animation for bio */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .bio {
-            background-color: white;
-            padding: 30px;
-            border-radius: 30px;
-            margin-bottom: 40px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            animation: fadeInUp 0.8s ease-out;
         }
+
         h1 {
             color: #ff1493;
-            font-size: 2em;
+            font-size: 1.8em;
+            margin-bottom: 10px;
         }
+
+        .bio p {
+            color: #555;
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+
         .button-group {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             justify-content: center;
             flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
         }
+
         .main-btn {
-            background-color: #ff69b4;
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
             color: white;
             border: none;
-            padding: 18px 40px;
-            border-radius: 50px;
-            font-size: 20px;
-            font-weight: bold;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3);
         }
+
         .main-btn:hover {
-            background-color: #ff1493;
-            transform: scale(1.05);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 20, 147, 0.4);
         }
+
         .private-btn {
-            background-color: #8b008b;
+            background: linear-gradient(135deg, #8b008b, #4b0082);
+            box-shadow: 0 5px 15px rgba(75, 0, 130, 0.3);
         }
-        .private-btn:hover {
-            background-color: #4b0082;
-        }
+
         .instagram-link {
-            margin-top: 40px;
-            font-size: 1.2em;
+            margin-top: 30px;
+            font-size: 1em;
         }
+
         a {
             color: #ff1493;
             text-decoration: none;
+            font-weight: 600;
         }
+
         footer {
-            margin-top: 40px;
-            color: #666;
+            margin-top: 30px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 12px;
         }
+
         /* Popup styles */
         .popup-overlay {
             display: none;
@@ -80,46 +149,55 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.7);
+            background-color: rgba(0, 0, 0, 0.8);
             z-index: 1000;
             justify-content: center;
             align-items: center;
+            backdrop-filter: blur(5px);
         }
+
         .popup-box {
-            background-color: white;
+            background: white;
             padding: 30px;
-            border-radius: 20px;
+            border-radius: 25px;
             text-align: center;
             max-width: 300px;
             margin: 20px;
+            animation: popIn 0.4s ease;
         }
+
         .popup-box input {
-            padding: 10px;
+            padding: 12px;
             width: 90%;
             margin: 15px 0;
-            border: 1px solid #ff69b4;
-            border-radius: 10px;
-            font-size: 16px;
+            border: 2px solid #ff69b4;
+            border-radius: 25px;
+            font-size: 14px;
+            text-align: center;
         }
+
         .popup-box button {
-            background-color: #ff69b4;
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 10px 25px;
             border-radius: 25px;
             margin: 5px;
             cursor: pointer;
+            font-weight: bold;
         }
-        .error-msg {
-            color: red;
-            font-size: 14px;
-            margin-top: 10px;
-        }
+
         .welcome-msg {
             font-size: 18px;
             font-weight: bold;
             color: #ff1493;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .error-msg {
+            color: red;
+            font-size: 12px;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -129,7 +207,7 @@
             <h1>Hi, I'm Kruthika from Bangalore 💋</h1>
             <p>Would you like to explore me? Then you're in the right place.</p>
             <p>Feel free to DM me – always available for you 💕</p>
-            <p>📸 Instagram: <a href="https://www.instagram.com/kruthinaik__" target="_blank">@kruthinaik__</a></p>
+            <p class="instagram-link">📸 <a href="https://www.instagram.com/kruthinaik__" target="_blank">@kruthinaik__</a></p>
         </div>
 
         <div class="button-group">
@@ -143,17 +221,17 @@
         </footer>
     </div>
 
-    <!-- Welcome Popup (First) -->
+    <!-- Welcome Popup -->
     <div id="welcomePopup" class="popup-overlay">
         <div class="popup-box">
-            <div class="welcome-msg">🔒 This Media Contains Nudes of mine when i was in school. Please do not share!!!  🔒</div>
+            <div class="welcome-msg">🔒 HI WELCOME TO PRIVATE PHOTOS AND VIDEOS 🔒</div>
             <p>Click OK to enter password</p>
             <button onclick="closeWelcomePopupAndOpenPassword()">OK</button>
             <button onclick="closeWelcomePopup()">Cancel</button>
         </div>
     </div>
 
-    <!-- Password Popup (Second) -->
+    <!-- Password Popup -->
     <div id="passwordPopup" class="popup-overlay">
         <div class="popup-box">
             <h3>🔒 Enter Password</h3>
