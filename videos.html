@@ -31,25 +31,28 @@
             display: inline-block;
             text-decoration: none;
         }
-        .category-buttons {
+        .number-buttons {
             display: flex;
-            gap: 12px;
+            gap: 15px;
             justify-content: center;
             flex-wrap: wrap;
             margin-bottom: 30px;
         }
-        .cat-btn {
+        .num-btn {
             background-color: #ff69b4;
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-size: 14px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 24px;
+            font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
         }
-        .cat-btn:hover {
+        .num-btn:hover {
             background-color: #ff1493;
+            transform: scale(1.1);
         }
         .gallery {
             display: grid;
@@ -79,7 +82,7 @@
         }
         .section-title {
             color: #ff1493;
-            font-size: 1.8em;
+            font-size: 1.5em;
             margin: 20px 0;
         }
         .hidden {
@@ -97,18 +100,22 @@
         
         <h1>🎥 My Videos</h1>
 
-        <div class="category-buttons">
-            <button class="cat-btn" onclick="showCategory('public')">Public</button>
-            <button class="cat-btn" onclick="showCategory('homealone')">Home Alone</button>
-            <button class="cat-btn" onclick="showCategory('bikini')">Bikini</button>
-            <button class="cat-btn" onclick="showCategory('nightout')">Night Out</button>
-            <button class="cat-btn" onclick="showCategory('candid')">Candid</button>
-            <button class="cat-btn" onclick="showCategory('couple')">Couple</button>
+        <div class="number-buttons">
+            <button class="num-btn" onclick="showNumber(1)">1</button>
+            <button class="num-btn" onclick="showNumber(2)">2</button>
+            <button class="num-btn" onclick="showNumber(3)">3</button>
+            <button class="num-btn" onclick="showNumber(4)">4</button>
+            <button class="num-btn" onclick="showNumber(5)">5</button>
+            <button class="num-btn" onclick="showNumber(6)">6</button>
+            <button class="num-btn" onclick="showNumber(7)">7</button>
+            <button class="num-btn" onclick="showNumber(8)">8</button>
+            <button class="num-btn" onclick="showNumber(9)">9</button>
+            <button class="num-btn" onclick="showNumber(10)">10</button>
         </div>
 
-        <!-- Public -->
-        <div id="public" class="category-section">
-            <h2 class="section-title">📸 Public</h2>
+        <!-- Number 1 -->
+        <div id="num1" class="category-section">
+            <h2 class="section-title">🎥 Category 1</h2>
             <div class="gallery">
                 <div class="gallery-item">
                     <video controls>
@@ -119,22 +126,9 @@
             </div>
         </div>
 
-        <!-- Home Alone -->
-        <div id="homealone" class="category-section hidden">
-            <h2 class="section-title">🏠 Home Alone</h2>
-            <div class="gallery">
-                <div class="gallery-item">
-                    <video controls>
-                        <source src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" type="video/mp4">
-                    </video>
-                    <p>Coming soon 💋</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Bikini -->
-        <div id="bikini" class="category-section hidden">
-            <h2 class="section-title">👙 Bikini</h2>
+        <!-- Numbers 2-10 -->
+        <div id="num2" class="category-section hidden">
+            <h2 class="section-title">🎥 Category 2</h2>
             <div class="gallery">
                 <div class="gallery-item">
                     <video controls>
@@ -145,41 +139,98 @@
             </div>
         </div>
 
-        <!-- Night Out -->
-        <div id="nightout" class="category-section hidden">
-            <h2 class="section-title">🌙 Night Out</h2>
+        <div id="num3" class="category-section hidden">
+            <h2 class="section-title">🎥 Category 3</h2>
             <div class="gallery">
                 <div class="gallery-item">
                     <video controls>
                         <source src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" type="video/mp4">
                     </video>
-                    <p>Coming soon ✨</p>
+                    <p>Coming soon 💕</p>
                 </div>
             </div>
         </div>
 
-        <!-- Candid -->
-        <div id="candid" class="category-section hidden">
-            <h2 class="section-title">🎬 Candid</h2>
+        <div id="num4" class="category-section hidden">
+            <h2 class="section-title">🎥 Category 4</h2>
             <div class="gallery">
                 <div class="gallery-item">
                     <video controls>
                         <source src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" type="video/mp4">
                     </video>
-                    <p>Coming soon 😊</p>
+                    <p>Coming soon 💕</p>
                 </div>
             </div>
         </div>
 
-        <!-- Couple -->
-        <div id="couple" class="category-section hidden">
-            <h2 class="section-title">💑 Couple</h2>
+        <div id="num5" class="category-section hidden">
+            <h2 class="section-title">🎥 Category 5</h2>
             <div class="gallery">
                 <div class="gallery-item">
                     <video controls>
                         <source src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" type="video/mp4">
                     </video>
-                    <p>Coming soon ❤️</p>
+                    <p>Coming soon 💕</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="num6" class="category-section hidden">
+            <h2 class="section-title">🎥 Category 6</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <video controls>
+                        <source src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" type="video/mp4">
+                    </video>
+                    <p>Coming soon 💕</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="num7" class="category-section hidden">
+            <h2 class="section-title">🎥 Category 7</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <video controls>
+                        <source src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" type="video/mp4">
+                    </video>
+                    <p>Coming soon 💕</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="num8" class="category-section hidden">
+            <h2 class="section-title">🎥 Category 8</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <video controls>
+                        <source src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" type="video/mp4">
+                    </video>
+                    <p>Coming soon 💕</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="num9" class="category-section hidden">
+            <h2 class="section-title">🎥 Category 9</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <video controls>
+                        <source src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" type="video/mp4">
+                    </video>
+                    <p>Coming soon 💕</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="num10" class="category-section hidden">
+            <h2 class="section-title">🎥 Category 10</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <video controls>
+                        <source src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" type="video/mp4">
+                    </video>
+                    <p>Coming soon 💕</p>
                 </div>
             </div>
         </div>
@@ -190,12 +241,11 @@
     </div>
 
     <script>
-        function showCategory(category) {
-            var sections = ['public', 'homealone', 'bikini', 'nightout', 'candid', 'couple'];
-            for (var i = 0; i < sections.length; i++) {
-                document.getElementById(sections[i]).classList.add('hidden');
+        function showNumber(num) {
+            for (var i = 1; i <= 10; i++) {
+                document.getElementById('num' + i).classList.add('hidden');
             }
-            document.getElementById(category).classList.remove('hidden');
+            document.getElementById('num' + num).classList.remove('hidden');
         }
     </script>
 </body>
