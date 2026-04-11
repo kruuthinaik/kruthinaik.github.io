@@ -13,7 +13,7 @@
             margin: 0;
         }
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: auto;
         }
         h1 {
@@ -73,9 +73,8 @@
         }
         .gallery-item img {
             width: 100%;
-            height: auto;
-            min-height: 250px;
-            object-fit: contain;
+            height: 250px;
+            object-fit: cover;
             background-color: #f5f5f5;
         }
         .gallery-item p {
@@ -118,6 +117,11 @@
         .hidden {
             display: none;
         }
+        .loading {
+            color: #ff69b4;
+            font-size: 18px;
+            padding: 40px;
+        }
         footer {
             margin-top: 40px;
             color: #666;
@@ -131,119 +135,19 @@
         <h1>📸 My Photos</h1>
 
         <div class="number-buttons">
-            <button class="num-btn" onclick="showNumber(1)">1</button>
-            <button class="num-btn" onclick="showNumber(2)">2</button>
-            <button class="num-btn" onclick="showNumber(3)">3</button>
-            <button class="num-btn" onclick="showNumber(4)">4</button>
-            <button class="num-btn" onclick="showNumber(5)">5</button>
-            <button class="num-btn" onclick="showNumber(6)">6</button>
-            <button class="num-btn" onclick="showNumber(7)">7</button>
-            <button class="num-btn" onclick="showNumber(8)">8</button>
-            <button class="num-btn" onclick="showNumber(9)">9</button>
-            <button class="num-btn" onclick="showNumber(10)">10</button>
+            <button class="num-btn" onclick="showCategory(1)">1</button>
+            <button class="num-btn" onclick="showCategory(2)">2</button>
+            <button class="num-btn" onclick="showCategory(3)">3</button>
+            <button class="num-btn" onclick="showCategory(4)">4</button>
+            <button class="num-btn" onclick="showCategory(5)">5</button>
+            <button class="num-btn" onclick="showCategory(6)">6</button>
+            <button class="num-btn" onclick="showCategory(7)">7</button>
+            <button class="num-btn" onclick="showCategory(8)">8</button>
+            <button class="num-btn" onclick="showCategory(9)">9</button>
+            <button class="num-btn" onclick="showCategory(10)">10</button>
         </div>
 
-        <!-- Number 1 -->
-        <div id="num1" class="category-section">
-            <h2 class="section-title">📸 Category 1</h2>
-            <div class="gallery">
-                <div class="gallery-item" onclick="openLightbox('IMG_8409.jpeg')">
-                    <img src="IMG_8409.jpeg" alt="Photo 1">
-                    <p>Beautiful smile ✨</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Numbers 2-10 (Hidden by default) -->
-        <div id="num2" class="category-section hidden">
-            <h2 class="section-title">📸 Category 2</h2>
-            <div class="gallery">
-                <div class="gallery-item">
-                    <img src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" alt="Coming Soon">
-                    <p>Coming soon 💕</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="num3" class="category-section hidden">
-            <h2 class="section-title">📸 Category 3</h2>
-            <div class="gallery">
-                <div class="gallery-item">
-                    <img src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" alt="Coming Soon">
-                    <p>Coming soon 💕</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="num4" class="category-section hidden">
-            <h2 class="section-title">📸 Category 4</h2>
-            <div class="gallery">
-                <div class="gallery-item">
-                    <img src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" alt="Coming Soon">
-                    <p>Coming soon 💕</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="num5" class="category-section hidden">
-            <h2 class="section-title">📸 Category 5</h2>
-            <div class="gallery">
-                <div class="gallery-item">
-                    <img src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" alt="Coming Soon">
-                    <p>Coming soon 💕</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="num6" class="category-section hidden">
-            <h2 class="section-title">📸 Category 6</h2>
-            <div class="gallery">
-                <div class="gallery-item">
-                    <img src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" alt="Coming Soon">
-                    <p>Coming soon 💕</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="num7" class="category-section hidden">
-            <h2 class="section-title">📸 Category 7</h2>
-            <div class="gallery">
-                <div class="gallery-item">
-                    <img src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" alt="Coming Soon">
-                    <p>Coming soon 💕</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="num8" class="category-section hidden">
-            <h2 class="section-title">📸 Category 8</h2>
-            <div class="gallery">
-                <div class="gallery-item">
-                    <img src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" alt="Coming Soon">
-                    <p>Coming soon 💕</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="num9" class="category-section hidden">
-            <h2 class="section-title">📸 Category 9</h2>
-            <div class="gallery">
-                <div class="gallery-item">
-                    <img src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" alt="Coming Soon">
-                    <p>Coming soon 💕</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="num10" class="category-section hidden">
-            <h2 class="section-title">📸 Category 10</h2>
-            <div class="gallery">
-                <div class="gallery-item">
-                    <img src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" alt="Coming Soon">
-                    <p>Coming soon 💕</p>
-                </div>
-            </div>
-        </div>
+        <div id="gallery-container"></div>
 
         <footer>
             <p>💕 Always available for you 💕</p>
@@ -256,11 +160,81 @@
     </div>
 
     <script>
-        function showNumber(num) {
-            for (var i = 1; i <= 10; i++) {
-                document.getElementById('num' + i).classList.add('hidden');
+        // List of photo folders
+        const photoFolders = [
+            'photo1', 'photo2', 'photo3', 'photo4', 'photo5',
+            'photo6', 'photo7', 'photo8', 'photo9', 'photo10'
+        ];
+
+        let currentCategory = 1;
+
+        async function showCategory(categoryNum) {
+            currentCategory = categoryNum;
+            const container = document.getElementById('gallery-container');
+            container.innerHTML = '<div class="loading">📸 Loading photos...</div>';
+            
+            const folderName = photoFolders[categoryNum - 1];
+            
+            try {
+                // Fetch list of files from the folder
+                const response = await fetch(`${folderName}/`);
+                const text = await response.text();
+                
+                // Parse HTML to get file list
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(text, 'text/html');
+                const links = doc.querySelectorAll('a');
+                
+                const imageFiles = [];
+                for (let link of links) {
+                    const href = link.getAttribute('href');
+                    if (href && (href.match(/\.(jpg|jpeg|png|gif|webp)$/i))) {
+                        imageFiles.push(href);
+                    }
+                }
+                
+                if (imageFiles.length === 0) {
+                    container.innerHTML = `
+                        <div class="section-title">📸 Category ${categoryNum}</div>
+                        <div class="gallery">
+                            <div class="gallery-item">
+                                <img src="https://via.placeholder.com/300x250/dda0dd/white?text=No+Photos+Yet" alt="Empty">
+                                <p>Coming soon 💕</p>
+                            </div>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                // Build gallery HTML
+                let galleryHTML = `<h2 class="section-title">📸 Category ${categoryNum}</h2>`;
+                galleryHTML += '<div class="gallery">';
+                
+                for (let img of imageFiles) {
+                    const imgPath = `${folderName}/${img}`;
+                    galleryHTML += `
+                        <div class="gallery-item" onclick="openLightbox('${imgPath}')">
+                            <img src="${imgPath}" alt="Photo">
+                            <p>❤️</p>
+                        </div>
+                    `;
+                }
+                
+                galleryHTML += '</div>';
+                container.innerHTML = galleryHTML;
+                
+            } catch (error) {
+                console.log('Folder not found:', folderName);
+                container.innerHTML = `
+                    <div class="section-title">📸 Category ${categoryNum}</div>
+                    <div class="gallery">
+                        <div class="gallery-item">
+                            <img src="https://via.placeholder.com/300x250/dda0dd/white?text=Create+Folder" alt="Empty">
+                            <p>Create folder: ${folderName}/</p>
+                        </div>
+                    </div>
+                `;
             }
-            document.getElementById('num' + num).classList.remove('hidden');
         }
 
         function openLightbox(imgSrc) {
@@ -271,6 +245,9 @@
         function closeLightbox() {
             document.getElementById('lightbox').style.display = 'none';
         }
+
+        // Load category 1 by default
+        showCategory(1);
     </script>
 </body>
 </html>
