@@ -13,7 +13,7 @@
             margin: 0;
         }
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: auto;
         }
         h1 {
@@ -85,43 +85,9 @@
             font-size: 1.5em;
             margin: 20px 0;
         }
-        .hidden {
-            display: none;
-        }
-        .loading {
-            color: #ff69b4;
-            font-size: 18px;
-            padding: 40px;
-        }
         footer {
             margin-top: 40px;
             color: #666;
-        }
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.9);
-            z-index: 1000;
-            cursor: pointer;
-            justify-content: center;
-            align-items: center;
-        }
-        .lightbox video {
-            max-width: 90%;
-            max-height: 90%;
-        }
-        .close-lightbox {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: white;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
         }
     </style>
 </head>
@@ -151,86 +117,74 @@
         </footer>
     </div>
 
-    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-        <span class="close-lightbox">&times;</span>
-        <video id="lightbox-video" controls></video>
-    </div>
-
     <script>
-        const videoFolders = [
-            'video1', 'video2', 'video3', 'video4', 'video5',
-            'video6', 'video7', 'video8', 'video9', 'video10'
+        const baseUrl = 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/';
+
+        // ========== CATEGORY 1 VIDEOS ==========
+        const category1Videos = [
+            'WhatsApp%20Video%202026-04-11%20at%2019.56.25.mp4',
+            'WhatsApp%20Video%202026-04-11%20at%2019.56.26.mp4'
         ];
 
-        async function showCategory(categoryNum) {
+        // ========== CATEGORY 2 VIDEOS ==========
+        const category2Videos = [
+            'WhatsApp%20Video%202026-04-11%20at%2019.56.28.mp4',
+            'WhatsApp%20Video%202026-04-11%20at%2019.56.34.mp4'
+        ];
+
+        // ========== CATEGORY 3 VIDEOS ==========
+        const category3Videos = [
+            'WhatsApp%20Video%202026-04-11%20at%2019.56.36.mp4',
+            'WhatsApp%20Video%202026-04-11%20at%2019.56.39.mp4'
+        ];
+
+        function showCategory(categoryNum) {
             const container = document.getElementById('gallery-container');
-            container.innerHTML = '<div class="loading">🎥 Loading videos...</div>';
-            
-            const folderName = videoFolders[categoryNum - 1];
-            
-            try {
-                const response = await fetch(`${folderName}/`);
-                const text = await response.text();
-                
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(text, 'text/html');
-                const links = doc.querySelectorAll('a');
-                
-                const videoFiles = [];
-                for (let link of links) {
-                    const href = link.getAttribute('href');
-                    if (href && (href.match(/\.(mp4|webm|mov|avi)$/i))) {
-                        videoFiles.push(href);
-                    }
-                }
-                
-                if (videoFiles.length === 0) {
-                    container.innerHTML = `
-                        <div class="section-title">🎥 Category ${categoryNum}</div>
-                        <div class="gallery">
-                            <div class="gallery-item">
-                                <video controls>
-                                    <source src="https://via.placeholder.com/300x250/dda0dd/white?text=No+Videos+Yet" type="video/mp4">
-                                </video>
-                                <p>Coming soon 💕</p>
-                            </div>
-                        </div>
-                    `;
-                    return;
-                }
-                
-                let galleryHTML = `<h2 class="section-title">🎥 Category ${categoryNum}</h2>`;
-                galleryHTML += '<div class="gallery">';
-                
-                for (let video of videoFiles) {
-                    const videoPath = `${folderName}/${video}`;
-                    galleryHTML += `
-                        <div class="gallery-item">
-                            <video controls preload="metadata">
-                                <source src="${videoPath}" type="video/mp4">
-                                Your browser doesn't support video.
-                            </video>
-                            <p>🎬 Video</p>
-                        </div>
-                    `;
-                }
-                
-                galleryHTML += '</div>';
-                container.innerHTML = galleryHTML;
-                
-            } catch (error) {
+            let videos = [];
+            let folder = '';
+
+            if (categoryNum === 1) {
+                videos = category1Videos;
+                folder = 'video1/';
+            } else if (categoryNum === 2) {
+                videos = category2Videos;
+                folder = 'video2/';
+            } else if (categoryNum === 3) {
+                videos = category3Videos;
+                folder = 'video3/';
+            } else {
                 container.innerHTML = `
-                    <div class="section-title">🎥 Category ${categoryNum}</div>
+                    <h2 class="section-title">🎥 Category ${categoryNum}</h2>
                     <div class="gallery">
                         <div class="gallery-item">
                             <video controls>
-                                <source src="https://via.placeholder.com/300x250/dda0dd/white?text=Create+Folder" type="video/mp4">
+                                <source src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" type="video/mp4">
                             </video>
-                            <p>Create folder: ${folderName}/</p>
+                            <p>Coming soon 💕</p>
                         </div>
                     </div>
                 `;
+                return;
             }
+
+            let galleryHTML = `<h2 class="section-title">🎥 Category ${categoryNum}</h2>`;
+            galleryHTML += '<div class="gallery">';
+            
+            for (let i = 0; i < videos.length; i++) {
+                const videoUrl = baseUrl + folder + videos[i];
+                galleryHTML += `
+                    <div class="gallery-item">
+                        <video controls preload="metadata">
+                            <source src="${videoUrl}" type="video/mp4">
+                            Your browser doesn't support video.
+                        </video>
+                        <p>🎬 Video</p>
+                    </div>
+                `;
+            }
+            
+            galleryHTML += '</div>';
+            container.innerHTML = galleryHTML;
         }
 
         // Load category 1 by default
