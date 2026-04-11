@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kruthika's Videos</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #ffe4e1 0%, #ffccd5 100%);
+            margin: 0;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+        }
+        h1 {
+            color: #ff1493;
+        }
+        .back-btn {
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 20px 0;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .category-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        .cat-btn {
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .cat-btn:hover {
+            background-color: #ff1493;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .gallery-item {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: 0.3s;
+        }
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+        .gallery-item video {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        .gallery-item p {
+            padding: 10px;
+            margin: 0;
+            color: #333;
+        }
+        .section-title {
+            color: #ff1493;
+            font-size: 1.8em;
+            margin: 20px 0;
+        }
+        .hidden {
+            display: none;
+        }
+        footer {
+            margin-top: 40px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">⬅ Back to Home</a>
+        
+        <h1>🎥 My Videos</h1>
+
+        <div class="category-buttons">
+            <button class="cat-btn" onclick="showCategory('public')">Public</button>
+            <button class="cat-btn" onclick="showCategory('homealone')">Home Alone</button>
+            <button class="cat-btn" onclick="showCategory('bikini')">Bikini</button>
+            <button class="cat-btn" onclick="showCategory('nightout')">Night Out</button>
+            <button class="cat-btn" onclick="showCategory('candid')">Candid</button>
+            <button class="cat-btn" onclick="showCategory('couple')">Couple</button>
+        </div>
+
+        <!-- Public -->
+        <div id="public" class="category-section">
+            <h2 class="section-title">📸 Public</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <video controls>
+                        <source src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" type="video/mp4">
+                    </video>
+                    <p>Coming soon 🎬</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Home Alone -->
+        <div id="homealone" class="category-section hidden">
+            <h2 class="section-title">🏠 Home Alone</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <video controls>
+                        <source src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" type="video/mp4">
+                    </video>
+                    <p>Coming soon 💋</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bikini -->
+        <div id="bikini" class="category-section hidden">
+            <h2 class="section-title">👙 Bikini</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <video controls>
+                        <source src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" type="video/mp4">
+                    </video>
+                    <p>Coming soon 💕</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Night Out -->
+        <div id="nightout" class="category-section hidden">
+            <h2 class="section-title">🌙 Night Out</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <video controls>
+                        <source src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" type="video/mp4">
+                    </video>
+                    <p>Coming soon ✨</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Candid -->
+        <div id="candid" class="category-section hidden">
+            <h2 class="section-title">🎬 Candid</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <video controls>
+                        <source src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" type="video/mp4">
+                    </video>
+                    <p>Coming soon 😊</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Couple -->
+        <div id="couple" class="category-section hidden">
+            <h2 class="section-title">💑 Couple</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <video controls>
+                        <source src="https://via.placeholder.com/300x250/dda0dd/white?text=Coming+Soon" type="video/mp4">
+                    </video>
+                    <p>Coming soon ❤️</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>💕 Always available for you 💕</p>
+        </footer>
+    </div>
+
+    <script>
+        function showCategory(category) {
+            var sections = ['public', 'homealone', 'bikini', 'nightout', 'candid', 'couple'];
+            for (var i = 0; i < sections.length; i++) {
+                document.getElementById(sections[i]).classList.add('hidden');
+            }
+            document.getElementById(category).classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
