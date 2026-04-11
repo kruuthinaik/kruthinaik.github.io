@@ -1,140 +1,142 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Private Gallery</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Private Gallery</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Poppins', Arial, sans-serif;
-            text-align: center;
+            font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
             min-height: 100vh;
-            background-image: url('IMG_8998.WEBP');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
             position: relative;
+            overflow-x: hidden;
         }
-
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 0;
-        }
-
-        .container {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: auto;
-            padding: 40px 20px;
-        }
-
-        h1 {
-            color: #ff69b4;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            margin-bottom: 20px;
-        }
-
-        .back-btn {
-            background: linear-gradient(135deg, #ff69b4, #ff1493);
-            color: white;
-            border: none;
-            padding: 10px 25px;
-            border-radius: 40px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            margin: 20px 0;
-            display: inline-block;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .back-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.4);
-        }
-
-        .private-badge {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 20px;
-            border-radius: 25px;
-            margin: 30px 0;
-            animation: fadeInUp 0.6s ease;
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .private-badge h2 {
-            color: #ff1493;
-            font-size: 1.8em;
-            margin-bottom: 10px;
-        }
-
-        .private-badge p {
-            color: #555;
-            font-size: 1.1em;
-        }
-
-        .coming-soon {
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 25px;
-            color: white;
-            animation: fadeInUp 0.8s ease;
-        }
-
-        .coming-soon h3 {
-            color: #ff69b4;
-            font-size: 1.5em;
-            margin-bottom: 15px;
-        }
-
-        footer {
-            margin-top: 50px;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 12px;
-        }
+        .background-slideshow { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+        .bg-media { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.5s ease-in-out; }
+        .bg-media.active { opacity: 1; z-index: 1; }
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 2; pointer-events: none; }
+        .container { position: relative; z-index: 10; max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .glass-header { background: rgba(255, 255, 255, 0.12); backdrop-filter: blur(15px); border-radius: 32px; padding: 16px 24px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; border: 1px solid rgba(255,255,255,0.2); }
+        h1 { color: #ff9bcb; font-size: 1.6rem; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+        .back-btn { background: linear-gradient(135deg, rgba(255,105,180,0.9), rgba(255,20,147,0.9)); color: white; border: none; padding: 8px 20px; border-radius: 40px; font-size: 0.85rem; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.25s ease; }
+        .back-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .private-badge { text-align: center; margin-bottom: 25px; }
+        .private-badge span { background: rgba(255,20,147,0.8); backdrop-filter: blur(10px); padding: 8px 20px; border-radius: 40px; color: white; font-weight: bold; font-size: 0.8rem; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        .gallery-item { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(5px); border-radius: 18px; overflow: hidden; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); transition: all 0.3s ease; }
+        .gallery-item:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25); }
+        .gallery-item video { width: 100%; height: 200px; object-fit: cover; }
+        .gallery-item p { padding: 8px; color: #ff1493; font-weight: 600; font-size: 0.75rem; text-align: center; }
+        footer { margin-top: 40px; color: rgba(255,255,255,0.7); font-size: 0.7rem; text-align: center; }
     </style>
 </head>
 <body>
-    <div class="container">
+<div id="bgSlideshow" class="background-slideshow"></div>
+<div class="overlay"></div>
+<div class="container">
+    <div class="glass-header">
+        <h1>🔒 Private Gallery</h1>
         <a href="index.html" class="back-btn">⬅ Back to Home</a>
-        
-        <h1>🔒 PRIVATE GALLERY</h1>
-
-        <div class="private-badge">
-            <h2>🔞 Exclusive Content 🔞</h2>
-            <p>Only for special eyes 👀</p>
-        </div>
-
-        <div class="coming-soon">
-            <h3>✨ Coming Soon ✨</h3>
-            <p>Private photos and videos will appear here</p>
-            <p style="margin-top: 15px; font-size: 12px;">🔒 Password protected area</p>
-        </div>
-
-        <footer>
-            <p>🔒 Private & Exclusive 🔒</p>
-        </footer>
     </div>
+    <div class="private-badge"><span>🔞 Exclusive Content 🔞</span></div>
+    <div id="gallery-container"></div>
+    <footer><p>🔒 Private & Exclusive 🔒</p></footer>
+</div>
+
+<script>
+    // Background slideshow (same as other pages)
+    const backgroundMedia = [ /* copy full list from photos.html - same */ 
+        { type: 'image', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9057.JPEG' },
+        { type: 'image', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9059.JPEG' },
+        { type: 'image', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9060.JPEG' },
+        { type: 'image', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9061.JPEG' },
+        { type: 'image', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9063.JPEG' },
+        { type: 'image', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9066.JPEG' },
+        { type: 'image', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9067.JPEG' },
+        { type: 'image', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9068.JPEG' },
+        { type: 'image', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9069.JPEG' },
+        { type: 'image', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9070.JPEG' },
+        { type: 'image', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9071.JPEG' },
+        { type: 'image', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9072.JPEG' },
+        { type: 'image', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9073.JPEG' },
+        { type: 'image', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9074.JPEG' },
+        { type: 'image', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9075.JPEG' },
+        { type: 'image', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9076.JPEG' },
+        { type: 'image', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9078.JPEG' },
+        { type: 'image', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9079.JPEG' },
+        { type: 'image', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9080.JPEG' },
+        { type: 'image', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9081.JPEG' },
+        { type: 'image', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9082.JPEG' },
+        { type: 'image', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9083.JPEG' },
+        { type: 'image', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9085.JPEG' },
+        { type: 'image', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9086.JPEG' },
+        { type: 'image', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9088.JPEG' },
+        { type: 'image', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9089.JPEG' },
+        { type: 'image', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9090.JPEG' },
+        { type: 'image', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9092.JPEG' },
+        { type: 'image', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9093.JPG.jpeg' },
+        { type: 'image', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9094.WEBP' },
+        { type: 'image', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9124.JPG.jpeg' },
+        { type: 'video', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9101.MOV' },
+        { type: 'video', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9105.MOV' },
+        { type: 'video', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9117.MP4' },
+        { type: 'video', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9118.MP4' },
+        { type: 'video', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9119.MP4' },
+        { type: 'video', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9120.MP4' },
+        { type: 'video', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9121.MP4' },
+        { type: 'video', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9122.MP4' },
+        { type: 'video', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9123.MP4' },
+        { type: 'video', url: 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/background/IMG_9127.MP4' }
+    ];
+    function shuffleArray(arr) { for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }
+    let mediaList = shuffleArray([...backgroundMedia]);
+    let currentIndex = 0;
+    function createMediaElement(media) {
+        if (media.type === 'image') { const img = document.createElement('img'); img.src = media.url; img.className = 'bg-media'; return img; }
+        else { const video = document.createElement('video'); video.src = media.url; video.muted = true; video.loop = false; video.playsInline = true; video.className = 'bg-media'; return video; }
+    }
+    function playNext() {
+        const container = document.getElementById('bgSlideshow');
+        const currentActive = container.querySelector('.bg-media.active');
+        const media = mediaList[currentIndex % mediaList.length];
+        const newElement = createMediaElement(media);
+        container.appendChild(newElement);
+        setTimeout(() => newElement.classList.add('active'), 50);
+        if (currentActive) { setTimeout(() => { if (currentActive.parentNode) currentActive.remove(); }, 1500); }
+        if (media.type === 'image') {
+            setTimeout(() => { if (document.body.contains(newElement)) { currentIndex++; playNext(); } }, 5000);
+        } else {
+            const video = newElement;
+            video.play().catch(e => console.log("Autoplay:", e));
+            video.onended = () => { if (document.body.contains(video)) { currentIndex++; playNext(); } };
+        }
+        currentIndex++;
+    }
+    playNext();
+
+    // PRIVATE VIDEOS (your 9 .mov files)
+    const privateVideos = [
+        '279a83393d874096af6befac93345c2e.mov',
+        '3622b19d8ff143c5ad31a7fc73837613.mov',
+        '3989d287c25f4192a10fb19bae72cbd1.mov',
+        '4b763391d0b44ec78da20b087850331c.mov',
+        '6596b547121d4d5aa24391f4ebe547be.mov',
+        'a3e4efc10c6543a7be3fe3f471d8a5a0.mov',
+        'c352a7dce3b849379862621bafc6b58e.mov',
+        'dce610b4075f4774ae5d564f6caee309.mov',
+        'edcaee4308d643f7b7369018c2f0065a.mov'
+    ];
+    const baseUrl = 'https://raw.githubusercontent.com/kruuthinaik/kruthinaik.github.io/main/private/';
+    const container = document.getElementById('gallery-container');
+    let html = `<div class="gallery">`;
+    privateVideos.forEach(video => {
+        const videoUrl = baseUrl + video;
+        html += `<div class="gallery-item"><video controls preload="metadata"><source src="${videoUrl}" type="video/mp4"></video><p>🔒 Private Video</p></div>`;
+    });
+    html += `</div>`;
+    container.innerHTML = html;
+</script>
 </body>
 </html>
