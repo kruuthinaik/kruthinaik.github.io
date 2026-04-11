@@ -115,6 +115,12 @@
             font-size: 14px;
             margin-top: 10px;
         }
+        .welcome-msg {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ff1493;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -129,7 +135,7 @@
         <div class="button-group">
             <a href="photos.html" class="main-btn">📸 Photos</a>
             <a href="videos.html" class="main-btn">🎥 Videos</a>
-            <button onclick="openPasswordPopup()" class="main-btn private-btn">🔒 Private</button>
+            <button onclick="openWelcomePopup()" class="main-btn private-btn">🔒 Private</button>
         </div>
 
         <footer>
@@ -137,21 +143,39 @@
         </footer>
     </div>
 
-    <!-- Password Popup -->
+    <!-- Welcome Popup (First) -->
+    <div id="welcomePopup" class="popup-overlay">
+        <div class="popup-box">
+            <div class="welcome-msg">🔒 HI WELCOME TO PRIVATE PHOTOS AND VIDEOS 🔒</div>
+            <p>Click OK to enter password</p>
+            <button onclick="closeWelcomePopupAndOpenPassword()">OK</button>
+            <button onclick="closeWelcomePopup()">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Password Popup (Second) -->
     <div id="passwordPopup" class="popup-overlay">
         <div class="popup-box">
-            <h3>🔒 HI WELCOME TO PRIVATE VIDEOS</h3>
-            <p>Enter password to continue:</p>
+            <h3>🔒 Enter Password</h3>
             <input type="password" id="passwordInput" placeholder="Enter password">
             <br>
-            <button onclick="checkPassword()">OK</button>
+            <button onclick="checkPassword()">Submit</button>
             <button onclick="closePasswordPopup()">Cancel</button>
             <p id="errorMsg" class="error-msg"></p>
         </div>
     </div>
 
     <script>
-        function openPasswordPopup() {
+        function openWelcomePopup() {
+            document.getElementById('welcomePopup').style.display = 'flex';
+        }
+
+        function closeWelcomePopup() {
+            document.getElementById('welcomePopup').style.display = 'none';
+        }
+
+        function closeWelcomePopupAndOpenPassword() {
+            document.getElementById('welcomePopup').style.display = 'none';
             document.getElementById('passwordPopup').style.display = 'flex';
             document.getElementById('passwordInput').value = '';
             document.getElementById('errorMsg').innerHTML = '';
